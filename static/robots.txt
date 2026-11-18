@@ -1,0 +1,7 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://onec-devops.github.io/sitemap.xml
+Sitemap: https://onec-devops.github.io/ru/sitemap.xml
+Sitemap: https://onec-devops.github.io/onec-gradle-plugin/sitemap.xml
+Sitemap: https://onec-devops.github.io/onec-gradle-plugin/ru/sitemap.xml

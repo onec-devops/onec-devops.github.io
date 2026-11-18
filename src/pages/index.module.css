@@ -1,0 +1,512 @@
+.hero {
+  padding: 5rem 0 4rem;
+}
+
+.heroContent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
+}
+
+.heroText {
+  flex: 1 1 28rem;
+  min-width: 0;
+}
+
+.hero {
+  --hero-accent: var(--ifm-color-primary);
+}
+
+/* The rotating word and the platform in the accent color. */
+.title {
+  margin-bottom: 1.25rem;
+  /* The longest word fits a 320px screen. */
+  font-size: clamp(2rem, 10.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.accent {
+  color: var(--hero-accent);
+}
+
+/* Its own line, so typing never moves the title. */
+.rotator {
+  composes: accent;
+  display: block;
+  min-height: 1.1em;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.06em;
+  height: 0.78em;
+  margin-left: 0.06em;
+  border-radius: 0.03em;
+  background: var(--hero-accent);
+  vertical-align: -0.05em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mission {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.mission:last-child {
+  margin-bottom: 0;
+}
+
+.examplePanel {
+  position: relative;
+  flex: 1 1 24rem;
+  min-width: 0;
+}
+
+/* Two layers read left to right: the terminal behind, the pipeline in front of it and below. */
+.terminal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Both windows have the same width, offset by the same step. */
+  width: calc(100% - 2.5rem);
+}
+
+.pipelineWindow {
+  position: relative;
+  margin: 11.25rem 0 0 2.5rem;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.18);
+}
+
+:global([data-theme='dark']) .pipelineWindow {
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.5);
+}
+
+.terminalBody {
+  padding: 0.9rem 1.1rem 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  container-type: inline-size;
+}
+
+/* A narrow terminal hides the right prompt, then the time. */
+@container (max-width: 21rem) {
+  .rightPrompt {
+    display: none;
+  }
+}
+
+@container (max-width: 17rem) {
+  .time {
+    display: none;
+  }
+
+  .outputBar {
+    margin-left: 2ch;
+  }
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  min-height: 1.6em;
+  white-space: pre;
+}
+
+.lineText {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.rightPrompt {
+  margin-left: auto;
+  padding-left: 1ch;
+  color: var(--window-muted);
+}
+
+.prompt {
+  color: var(--window-muted);
+}
+
+.outputBar {
+  display: inline-block;
+  height: 0.5em;
+  /* The time column and the gap after it. */
+  margin-left: 9ch;
+  border-radius: 0.25em;
+  background: var(--window-border);
+  vertical-align: middle;
+}
+
+/* The command color of VS Code. */
+.command {
+  color: var(--command);
+}
+
+.time {
+  color: var(--window-muted);
+  opacity: 0.7;
+}
+
+.success {
+  color: var(--success);
+  font-weight: 700;
+}
+
+/* The window looks like a terminal in both color modes. */
+.window {
+  /* The colors follow the site theme, like the project cards. */
+  --window-background: var(--ifm-background-surface-color);
+  --window-bar: var(--ifm-color-emphasis-100);
+  --window-border: var(--ifm-color-emphasis-300);
+  --window-muted: var(--ifm-color-emphasis-600);
+  --job-background: var(--ifm-background-color);
+  --command: #795e26;
+  --success: #1a7f37;
+  --check: #fff;
+  --running: #9a6700;
+
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--window-background);
+  border: 1px solid var(--window-border);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.08);
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.875rem;
+}
+
+:global([data-theme='dark']) .window {
+  --window-background: #242526;
+  --window-bar: #2c2d2f;
+  --job-background: #1b1b1d;
+  --command: #dcdcaa;
+  --success: #3fb950;
+  --check: #1b1b1d;
+  --running: #d29922;
+
+  box-shadow: none;
+}
+
+.windowBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: var(--window-bar);
+  border-bottom: 1px solid var(--window-border);
+  color: var(--window-muted);
+  font-size: 0.8rem;
+}
+
+.dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dots span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--window-border);
+}
+
+.windowBody {
+  padding: 1.25rem;
+  container-type: inline-size;
+}
+
+.trigger {
+  margin-bottom: 1.25rem;
+  color: var(--window-muted);
+  font-size: 0.8rem;
+}
+
+.pipeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  position: relative;
+  flex: 1 0 auto;
+}
+
+/* The line from the previous stage. */
+.stage + .stage::before {
+  content: '';
+  position: absolute;
+  top: 2.6rem;
+  left: -1rem;
+  width: 1rem;
+  height: 2px;
+  background: var(--window-border);
+}
+
+.stageName {
+  margin-bottom: 0.4rem;
+  color: var(--window-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.jobs {
+  margin: 0;
+  padding: 0.25rem 0;
+  list-style: none;
+  border: 1px solid var(--window-border);
+  border-radius: 0.5rem;
+  background: var(--job-background);
+}
+
+.job {
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.jobIcon {
+  position: relative;
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+}
+
+.jobName {
+  font-weight: 700;
+}
+
+.jobDuration {
+  margin-left: auto;
+  padding-left: 0.5rem;
+  color: var(--window-muted);
+  white-space: nowrap;
+}
+
+.passed .jobIcon circle {
+  fill: var(--success);
+}
+
+.passed .jobIcon path {
+  fill: none;
+  stroke: var(--check);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.running .jobIcon {
+  border: 2px solid var(--window-border);
+  border-top-color: var(--running);
+  animation: spin 1s linear infinite;
+}
+
+.running .jobDuration {
+  color: var(--running);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .running .jobIcon {
+    animation: none;
+  }
+}
+
+/* A band across the whole page width sets the values apart from the hero and the projects. */
+.valuesBand {
+  padding: 4rem 0;
+  background: var(--ifm-color-emphasis-100);
+}
+
+:global([data-theme='dark']) .valuesBand {
+  background: #242526;
+}
+
+.valuesHeader {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.valuesTitle {
+  margin-bottom: 0.75rem;
+  font-size: 2.25rem;
+  text-wrap: balance;
+}
+
+.valuesLead {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.values {
+  display: grid;
+  /* 4, 2 or 1 in a row, never 3 + 1. */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem 2rem;
+}
+
+.value {
+  text-align: center;
+}
+
+.valueIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ifm-color-primary) 14%, transparent);
+}
+
+.valueIcon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.valueTitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.value p {
+  margin-bottom: 0;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.main {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+
+.project {
+  position: relative;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-card-border-radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+.project:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.project p:first-of-type {
+  flex-grow: 1;
+}
+
+.project p:last-child {
+  margin-bottom: 0;
+}
+
+/* The link of the project name covers the whole card. */
+.projectLink {
+  color: inherit;
+}
+
+.projectLink:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.projectLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.secondaryLink {
+  position: relative;
+  z-index: 1;
+}
+
+.links {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 996px) {
+  .hero {
+    padding: 3rem 0;
+  }
+}
+
+/* The stages go in a column when the window is too narrow for a row. */
+@container (max-width: 25.5rem) {
+  .pipeline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stage + .stage::before {
+    top: -1.25rem;
+    left: 1rem;
+    width: 2px;
+    height: 1.25rem;
+  }
+}
+
+@media (max-width: 996px) {
+  .values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .valuesTitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+}
