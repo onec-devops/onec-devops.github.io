@@ -18,6 +18,24 @@ const config: Config = {
       tagName: 'link',
       attributes: {rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png'},
     },
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Onec DevOps',
+        alternateName: 'onec-devops.github.io',
+        url: 'https://onec-devops.github.io/',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Onec DevOps',
+          url: 'https://onec-devops.github.io/',
+          logo: 'https://onec-devops.github.io/apple-touch-icon.png',
+          sameAs: [organizationUrl],
+        },
+      }),
+    },
   ],
 
   future: {
@@ -59,6 +77,7 @@ const config: Config = {
   themeConfig: {
     image: 'img/social-card.png',
     metadata: [
+      {property: 'og:site_name', content: 'Onec DevOps'},
       {name: 'google-site-verification', content: '5-91D25BYoEIEzKuLl7CnIBHcdfu2G86v9u8MWMJSho'},
       {name: 'yandex-verification', content: '52a9b7d0bfe81439'},
     ],
