@@ -77,13 +77,18 @@ function Rotator({words}: {words: string[]}): ReactNode {
     return () => window.clearTimeout(timer);
   }, [animated, deleting, index, length, words]);
 
+  // Static HTML holds the word once, for crawlers and titles.
+  if (!animated) {
+    return <span className={styles.rotator}>{words[0]}</span>;
+  }
+
   return (
     <span className={styles.rotator}>
       {/* Read once, not every keystroke. */}
       <span className={styles.visuallyHidden}>{words[0]}</span>
       <span aria-hidden="true">
         {words[index].slice(0, length)}
-        {animated && <span className={styles.caret} />}
+        <span className={styles.caret} />
       </span>
     </span>
   );
@@ -170,7 +175,7 @@ export default function Home(): ReactNode {
     message: 'Open-source projects for 1C:Enterprise',
   });
   return (
-    <Layout description={tagline}>
+    <Layout title={tagline} description={tagline}>
       <header className={styles.hero}>
         <div className={clsx('container', styles.heroContent)}>
           <div className={styles.heroText}>
