@@ -39,6 +39,10 @@
   min-height: 1.1em;
 }
 
+.typed::before {
+  content: attr(data-text);
+}
+
 .caret {
   display: inline-block;
   width: 0.06em;

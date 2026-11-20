@@ -86,8 +86,8 @@ function Rotator({words}: {words: string[]}): ReactNode {
     <span className={styles.rotator}>
       {/* Read once, not every keystroke. */}
       <span className={styles.visuallyHidden}>{words[0]}</span>
-      <span aria-hidden="true">
-        {words[index].slice(0, length)}
+      {/* Typed text lives in CSS, out of the indexed text. */}
+      <span aria-hidden="true" className={styles.typed} data-text={words[index].slice(0, length)}>
         <span className={styles.caret} />
       </span>
     </span>
